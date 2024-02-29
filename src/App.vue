@@ -1,6 +1,7 @@
 <script  lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import LoginView from './views/login/LoginView.vue'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'App',
@@ -14,13 +15,18 @@ export default {
       isAuthenticated: false
     }
   },
+  computed: {
+    ...mapGetters("auth", ["getAuthentication"])
+  },
   created() {
+    this.isAuthenticated = !!this.getAuthentication
     if (this.isAuthenticated) {
       this.$router.push("/home");
     }
   },
   methods: {
-    logout() {
+    async logout() {
+      await this.$store.dispatch("auth/logout")
       this.isAuthenticated = false;
     },
     checkAuth(auth) {

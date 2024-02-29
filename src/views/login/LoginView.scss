@@ -1,1 +1,43 @@
 @use '@/assets/styles/ui.scss';
+
+.login-form {
+    flex-direction: column;
+    width: auto;
+    max-width: 400px;
+    margin: auto;
+    justify-content: center;
+}
+
+.outer-layer {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+.button-group {
+    display: flex;
+    flex-direction: row;
+    column-gap: .5rem;
+    justify-content: center;
+}
+
+.forgot-dialog {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35%;
+}
+
+.register-dialog {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+}
+
+.dialog-buttons {
+    display: flex;
+    flex-direction: row;
+    column-gap: .5rem;
+}
