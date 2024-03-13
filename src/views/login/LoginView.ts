@@ -110,6 +110,7 @@ export default {
 					this.$emit("authenticate", this.isAuthenticated)
 
 					setTimeout(() => {
+						// debugger
 						window.location.reload()
 					}, 2000)
 				})

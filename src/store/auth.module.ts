@@ -30,7 +30,7 @@ export const auth = {
 			commit("logout")
 		},
 		register({ commit }, user) {
-			debugger
+			// debugger
 			return authService.register(user).then(
 				(response) => {
 					commit("registerSuccess")
@@ -79,6 +79,10 @@ export const auth = {
 		},
 		forgotPasswordSuccess(state) {
 			state.status.loggedIn = false
+		},
+		uploadAvatarSuccess(state, avatar) {
+			// debugger
+			state.user.avatar = avatar
 		}
 	}
 }
