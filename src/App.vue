@@ -147,6 +147,7 @@
             <template v-slot:append>
               <v-btn><RouterLink to="/">Home</RouterLink></v-btn>
               <v-btn><RouterLink to="/about">About</RouterLink></v-btn>
+              <v-btn><RouterLink to="/characters">Character Index</RouterLink></v-btn>
               <button @click="logout();">Logout</button>
               <v-menu offset-y width="500">
                 <template v-slot:activator="{ props }">
