@@ -8,6 +8,7 @@ interface Character {
 	playstyleDescription: string
 	created_at: string
 	updated_at: string
+	image: File
 	// moves?: Move[]
 	// users?: User[]
 	// theme?: Theme
