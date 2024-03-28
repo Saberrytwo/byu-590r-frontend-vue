@@ -23,7 +23,6 @@ class CharacterService {
 				headers: authHeader()
 			})
 			.then((response) => {
-				debugger
 				return response.data.data
 			})
 			.catch((error) => {
@@ -50,17 +49,14 @@ class CharacterService {
 	}
 
 	deleteCharacter(characterId: number) {
-		debugger
 		return axios
 			.delete(API_URL + "delete?characterId=" + characterId, {
 				headers: authHeader()
 			})
 			.then((response) => {
-				debugger
 				return response.data
 			})
 			.catch((error) => {
-				debugger
 				throw error.response.data.message
 			})
 	}

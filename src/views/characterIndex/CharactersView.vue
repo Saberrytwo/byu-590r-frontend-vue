@@ -39,7 +39,7 @@
         >
           <v-card elevation="2">
             <v-img
-              :src="character.imageURL"
+              :src="character.imageURLToShow"
               height="200px"
               contain
             ></v-img>
@@ -49,15 +49,27 @@
               <p>Origin Game: {{ character.originGame }}</p>
               <p>Release Pack: {{ character.releasePack }}</p>
               <p>{{ character.playstyleDescription }}</p>
+              <v-select
+                label="Moveset"
+                :items="character.moves.map(m => m.name)">
+              </v-select>
             </v-card-text>
-            <v-btn icon @click="initializeEdit(character)">
-              <v-icon>mdi-pencil</v-icon>
-            </v-btn>
-            <v-btn icon @click="confirmDelete(character)">
-              <v-icon>mdi-delete</v-icon>
-            </v-btn>
-          </v-card>
-        </v-col>
+            <div class="button-container"> <!-- Wrap buttons in a container -->
+              <div>
+                <v-btn class="position-icon-buttons edit-button" icon @click="initializeEdit(character)">
+                    <v-icon>mdi-pencil</v-icon>
+                </v-btn>
+                <v-btn class="position-icon-buttons" icon @click="confirmDelete(character)">
+                    <v-icon>mdi-delete</v-icon>
+                </v-btn>
+              </div>
+
+                <v-btn class="position-icon-buttons" @click="showTheme(index)">
+                    {{ character.imageURLToShow === character.imageURL ? "Show Theme" : "Show Character" }}
+                </v-btn>
+            </div>
+            </v-card>
+          </v-col>
       </v-row>
 
       <v-dialog v-model="showCreateDialog" max-width="500px">
@@ -68,7 +80,7 @@
               <v-text-field :rules="nameRules" v-model="selectedCharacter.name" label="Name" required></v-text-field>
               <v-file-input
                   required
-                  :rules="imageRules"
+                  :rules="[imageTypeRule]"
                   label="Upload New Image"
                     @change="onFileUpload"
                   ></v-file-input>

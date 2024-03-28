@@ -9,9 +9,19 @@ interface Character {
 	created_at: string
 	updated_at: string
 	image: File
-	// moves?: Move[]
+	imageURLToShow?: string
+	moves?: Move[]
 	// users?: User[]
 	// theme?: Theme
+}
+
+interface Move {
+	id: number
+	character_id: number
+	name: string
+	buttons: string
+	created_at: string
+	updated_at: string
 }
 
 export default Character

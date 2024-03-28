@@ -20,18 +20,31 @@ export default {
 
 				return "No character has name shorter than 3 characters."
 			}
-		],
-		imageRules: [
-			(v) => !!v || "Image is required",
-			(v) => (v && v.size > 0) || "Image is required"
 		]
 	}),
-	computed: {},
+	computed: {
+		imageTypeRule() {
+			return (value) => {
+				if (!value || value.length === 0)
+					return "You must upload an image."
+				console.log(value)
+				return true
+			}
+		}
+	},
 	methods: {
 		getCharacters() {
 			this.$store.dispatch("character/getCharacters").then((response) => {
+				response.forEach((x) => (x.imageURLToShow = x.imageURL))
 				this.characters = response
 			})
+		},
+		showTheme(index: number) {
+			this.characters[index].imageURLToShow =
+				this.characters[index].theme.imageURL ===
+				this.characters[index].imageURLToShow
+					? this.characters[index].imageURL
+					: this.characters[index].theme.imageURL
 		},
 		onFileUpload(e) {
 			var image = e.target.files || e.dataTransfer.files
@@ -53,7 +66,6 @@ export default {
 				.catch((error) => {
 					console.error("Error updating character:", error)
 				})
-			debugger
 		},
 		initializeCreate() {
 			this.selectedCharacter = {}

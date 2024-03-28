@@ -68,7 +68,6 @@ export const character = {
 			const index = state.characters.findIndex(
 				(x) => x.id === character.id
 			)
-			debugger
 			if (index !== -1) {
 				state.characters.splice(index, 1, character)
 			}
